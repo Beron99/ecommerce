@@ -1,22 +1,25 @@
 <?php 
 
-require_once("vendor/autoload.php");
+require_once("vendor/autoload.php");//Tras as dependencias do que o projeto precisa
 
-$app = new \Slim\Slim();
+use \Slim\Slim;//classes carregadas
+use \Hcode\Page;//classes carregadas
+
+$app = new Slim();//slim gerencias as rotas da url
 
 $app->config('debug', true);
 
-$app->get('/', function() {
+$app->get('/', function() {//quando chamarem via get a pasta raiz o que esta na rota
+
+	$page = new Page();
+
+	$page->setTpl("index");//carrega o header, body, footer
     
-    $sql = new Hcode\DB\Sql();
-
-    $results = $sql->select("SELECT * FROM tb_users");
-
-    echo json_encode($results);
+    
 	
 
 });
 
-$app->run();
+$app->run();//depois que carregar todos os templates, executa
 
  ?>
