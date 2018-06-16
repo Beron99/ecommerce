@@ -10,6 +10,8 @@
 		private $tpl;
 		private $options = [];
 		private $defaults = [
+			"header"=>true,
+			"footer"=>true,	
 			"data"=>[]
 		];
 
@@ -32,7 +34,7 @@
 
 		
 
-			$this->tpl->draw("header");//cabeçaçho da página
+			if ($this->options["header"] === true) $this->tpl->draw("header");//cabeçaçho da página
 
 		}
 
@@ -53,7 +55,7 @@
 		public function __destruct()
 		{
 
-			$this->tpl->draw("footer");
+		if ($this->options["footer"] === true)$this->tpl->draw("footer");
 
 		}
 
